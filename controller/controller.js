@@ -1,22 +1,31 @@
 import Model from "../model/model.js"
 import tablaView from "../view/tablaView.js"
 
-class Controller{
-    
-    constructor(){
-        const MODEL= new Model()
-        const TABLA=new tablaView("main")
-        $(window).on("select", event =>{
-            if(MODEL.ellenorzes()==null){
+class Controller {
+
+    constructor() {
+        const MODEL = new Model()
+        const TABLA = new tablaView("#jatekter")
+        TABLA.kiKov(MODEL.kor)
+        $(window).on("select", event => {
+            if (MODEL.ellenorzes() == null) {
                 MODEL.valaszt(event.detail)
                 TABLA.tablaBeallit(MODEL.allapot)
+                TABLA.kiKov(MODEL.ellenorzes() === null ? MODEL.kor : undefined)
             }
-            if(MODEL.ellenorzes()==1)
-                console.log(`nyertél`);
-            if(MODEL.ellenorzes()==-1)
-                console.log(`vesztettél`);
-            if(MODEL.ellenorzes()==0)
-                console.log(`döntetlen`);
+            switch (MODEL.ellenorzes()) {
+                case 1:
+                    TABLA.szovegValt(`ඞ (amongus) nyert`);
+                    break;
+                case -1:
+                    TABLA.szovegValt(`ය (sussy baka) nyert`);
+                    break;
+                case 0:
+                    TABLA.szovegValt(`döntetlen`);
+                    break;
+                default:
+                    break;
+            }
         })
     }
 }

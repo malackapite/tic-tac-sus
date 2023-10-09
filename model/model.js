@@ -18,6 +18,10 @@ class Model {
         }
     }
 
+    get kor(){
+        return this.#kor % 2 == 0 ? "ඞ" : "ය"
+    }
+
     ellenorzes() {
         if (this.#vizszint() != null)
             return this.#vizszint()

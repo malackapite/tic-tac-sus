@@ -15,6 +15,15 @@ class tablaView{
             new mezoView($("#tabla"), ix, allapot[ix])
         }
     }
-}
 
+    szovegValt(szoveg){
+        $("#eredmeny").html(szoveg)
+    }
+
+    kiKov(ki){
+        $("#ki").html(ki+" következik")
+        if(ki === undefined)
+            $("#ki").empty()
+    }
+}
 export default tablaView
